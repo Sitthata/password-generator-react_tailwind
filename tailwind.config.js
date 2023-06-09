@@ -11,6 +11,7 @@ export default {
         'secondary': "#F8CC6B",
         'background': "rgb(19,18,23)",
         "background-light": "rgb(36,35,42)",
+        'grey-light': "#53525A",
       },
     },
   },
