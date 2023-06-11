@@ -8,9 +8,12 @@ function App() {
   const [ password, setPassword ] = useState('P4$5W0rD!')
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen mx-auto bg-background flex-col">
+    <div className="flex flex-col items-center justify-center w-screen h-screen mx-auto bg-background">
+      <p className="text-[#666373] text-3xl font-semibold">Password Generator</p>
+      <div className="w-[90%] sm:max-w-[35rem]">
       <Password password={password}/>
       <PasswordGennerator onGenerate={setPassword}/>
+      </div>
     </div>
   );
 }

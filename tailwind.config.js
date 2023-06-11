@@ -3,6 +3,9 @@ export default {
   content: ["./src/**/*.{html,js,jsx,js,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Roboto Mono', 'monospace', 'sans-serif'],
+      },
       textColor: {
         'default': '#FFFFFF',
       },
