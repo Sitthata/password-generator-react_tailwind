@@ -14,8 +14,10 @@ const PasswordGennerator = ({ onGenerate }) => {
     { label: "Include Numbers", checked: false },
     { label: "Include Symbols", checked: false },
   ]);
+  const [error, setError] = useState(null);
   const passwordStrength = checkboxOption.filter((option) => option.checked).length;
   const handleCheckboxChange = (index) => {
+    setError(null);
     setCheckboxOption(
       checkboxOption.map((option, idx) =>
         idx === index ? { ...option, checked: !option.checked } : option
@@ -24,6 +26,11 @@ const PasswordGennerator = ({ onGenerate }) => {
   };
 
   const generatePassword = () => {
+    if (passwordStrength === 0) {
+      setError("Please select at least one option");
+      return;
+    }
+    
     const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowerCase = "abcdefghijklmnopqrstuvwxyz";
     const numbers = "0123456789";
@@ -77,7 +84,7 @@ const PasswordGennerator = ({ onGenerate }) => {
               onClick={() => handleCheckboxChange(index)}
             >
               {option.checked ? (
-                <FaCheckSquare className="cursor-pointer hover:text-primary" />
+                <FaCheckSquare className="cursor-pointer text-primary" />
               ) : (
                 <FaRegSquare className="cursor-pointer hover:text-primary" />
               )}
@@ -86,13 +93,14 @@ const PasswordGennerator = ({ onGenerate }) => {
               </label>
             </div>
           ))}
+          {error && <p className="text-red-500">{error}</p>}
         </div>
 
         <Strength strength={passwordStrength}/>
 
         <button
           onClick={generatePassword}
-          className="flex items-center justify-center w-full gap-3 py-3 mt-4 font-semibold uppercase transition duration-150 ease-in outline-primary outline bg-primary hover:bg-transparent hover:text-primary"
+          className="flex items-center justify-center w-full gap-3 py-4 mt-4 font-semibold uppercase transition duration-150 ease-in border border-transparent bg-primary hover:border-primary hover:bg-transparent hover:text-primary"
         >
           Generate <AiOutlineArrowRight />
         </button>
